@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Strategy — EconLab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="game.css">
+  <script src="game.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="index.html">
+        econ<span>lab.</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html#experiments">Experiments</a>
+        <a href="index.html#market">The Market</a>
+        <a href="#game">The Strategy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="strategy-hero">
+      <div class="wrap strategy-intro">
+        <div>
+          <p class="mono strategy-kicker">
+            EXPERIMENT 02 / GAME THEORY
+          </p>
+
+          <h1>
+            The art of<br>
+            <em>cooperation.</em>
+          </h1>
+        </div>
+
+        <div class="strategy-intro-note">
+          <p>
+            When does cooperation make sense?
+            And why might two rational players
+            choose an outcome that's worse for both?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="strategy-main wrap" id="game"
+             aria-labelledby="gameTitle">
+
+      <div class="strategy-section-heading">
+        <div>
+          <p class="mono eyebrow">THE PRISONER'S DILEMMA / 01</p>
+          <h2 id="gameTitle">Make your move.</h2>
+        </div>
+
+        <p>
+          Play repeated rounds against a computer.
+          Your decisions and its strategy determine
+          each player's payoff.
+        </p>
+      </div>
+
+      <div class="strategy-workspace">
+
+        <section class="decision-panel" aria-labelledby="decisionTitle">
+          <p class="mono eyebrow">PLAYER 01 / YOU</p>
+          <h3 id="decisionTitle">Choose your action.</h3>
+
+          <p class="decision-description">
+            Cooperating helps both players when they cooperate.
+            Defecting may increase your individual payoff,
+            but can undermine mutual cooperation.
+          </p>
+
+          <div class="choice-stack">
+            <button id="cooperateButton"
+                    class="choice-button cooperate"
+                    type="button">
+              <span class="choice-number">A /</span>
+              <span>Cooperate</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+
+            <button id="defectButton"
+                    class="choice-button defect"
+                    type="button">
+              <span class="choice-number">B /</span>
+              <span>Defect</span>
+              <span aria-hidden="true">↗</span>
+            </button>
+          </div>
+
+          <label for="strategySelect" class="strategy-label">
+            Opponent's strategy
+          </label>
+
+          <select id="strategySelect">
+            <option value="tit-for-tat">Tit for Tat</option>
+            <option value="always-cooperate">Always Cooperate</option>
+            <option value="always-defect">Always Defect</option>
+          </select>
+
+          <p id="strategyDescription" class="strategy-description">
+            Starts by cooperating, then copies your previous move.
+          </p>
+
+          <button id="resetGame" type="button" class="reset-game">
+            Reset experiment ↺
+          </button>
+        </section>
+
+        <section class="game-display" aria-labelledby="roundTitle">
+          <div class="display-heading">
+            <div>
+              <p class="mono eyebrow">LIVE EXPERIMENT</p>
+              <h3 id="roundTitle">Round <span id="roundNumber">01</span></h3>
+            </div>
+
+            <span class="mono">TWO-PLAYER GAME</span>
+          </div>
+
+          <div class="scoreboard">
+            <div class="score-block">
+              <p class="mono">YOUR TOTAL</p>
+              <div id="playerScore" class="score-number">0</div>
+              <p>Payoff points</p>
+            </div>
+
+            <div class="score-divider" aria-hidden="true">/</div>
+
+            <div class="score-block">
+              <p class="mono">OPPONENT TOTAL</p>
+              <div id="opponentScore" class="score-number">0</div>
+              <p>Payoff points</p>
+            </div>
+          </div>
+
+          <div class="round-result" aria-live="polite">
+            <p class="mono">LATEST OUTCOME</p>
+            <h3 id="outcomeTitle">No decisions yet.</h3>
+            <p id="outcomeExplanation">
+              Select Cooperate or Defect to begin the experiment.
+            </p>
+          </div>
+
+          <div class="history-heading">
+            <h4>Decision history</h4>
+            <span class="mono" id="roundCount">0 ROUNDS COMPLETED</span>
+          </div>
+
+          <div class="history-table-wrap">
+            <table class="history-table">
+              <thead>
+                <tr>
+                  <th scope="col">Round</th>
+                  <th scope="col">You</th>
+                  <th scope="col">Opponent</th>
+                  <th scope="col">Your payoff</th>
+                  <th scope="col">Their payoff</th>
+                </tr>
+              </thead>
+
+              <tbody id="historyBody">
+                <tr>
+                  <td colspan="5" class="empty-history">
+                    No rounds played yet.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    
+<!-- EXPERIMENT 02: STRATEGY ANALYSIS GRAPHS -->
+
+<section class="strategy-graphs" aria-labelledby="graphsTitle">
+
+  <div class="graphs-heading">
+    <div>
+      <p class="mono eyebrow">ANALYSIS / LIVE RESULTS</p>
+      <h2 id="graphsTitle">The consequences.</h2>
+    </div>
+
+    <p>
+      Every decision changes the experiment.
+      Study how cooperation and competition
+      affect both players over time.
+    </p>
+  </div>
+
+  <!-- GRAPH 1: CUMULATIVE PAYOFFS -->
+
+  <div class="graph-section">
+    <div class="graph-information">
+      <span class="mono eyebrow">FIGURE 02 / CUMULATIVE PAYOFFS</span>
+      <h3>Who is gaining?</h3>
+      <p>
+        Track both players' total payoffs across
+        successive rounds of the game.
+      </p>
+    </div>
+
+    <div class="graph-container">
+      <div class="graph-legend">
+        <span class="legend-player">You</span>
+        <span class="legend-opponent">Opponent</span>
+      </div>
+
+      <svg
+        id="payoffGraph"
+        viewBox="0 0 700 350"
+        role="img"
+        aria-label="Line graph comparing cumulative payoffs"
+      ></svg>
+
+      <p class="graph-footer">
+        Horizontal axis: round number.
+        Vertical axis: cumulative payoff points.
+      </p>
+    </div>
+  </div>
+
+  <!-- GRAPH 2: COOPERATION RATE -->
+
+  <div class="graph-section">
+    <div class="graph-information">
+      <span class="mono eyebrow">FIGURE 03 / COOPERATION</span>
+      <h3>How often do we cooperate?</h3>
+      <p>
+        Compare the percentage of rounds where
+        you and your opponent chose cooperation.
+      </p>
+    </div>
+
+    <div class="graph-container">
+      <div class="graph-legend">
+        <span class="legend-player">You</span>
+        <span class="legend-opponent">Opponent</span>
+      </div>
+
+      <svg
+        id="cooperationGraph"
+        viewBox="0 0 700 350"
+        role="img"
+        aria-label="Line graph comparing cooperation rates"
+      ></svg>
+
+      <p class="graph-footer">
+        Cooperation rate = cooperative rounds ÷ total rounds × 100.
+      </p>
+    </div>
+  </div>
+
+</section>
+
+      <section class="payoff-section" aria-labelledby="payoffTitle">
+        <div class="payoff-heading">
+          <div>
+            <p class="mono eyebrow">THE UNDERLYING MODEL</p>
+            <h2 id="payoffTitle">The payoff matrix.</h2>
+          </div>
+
+          <p>
+            Each cell shows your payoff first and the
+            opponent's payoff second. Higher numbers
+            represent more desirable outcomes.
+          </p>
+        </div>
+
+        <div class="matrix-wrap">
+          <table class="payoff-matrix">
+            <caption>Prisoner's Dilemma payoff matrix</caption>
+            <thead>
+              <tr>
+                <th scope="col">Your action</th>
+                <th scope="col">Opponent cooperates</th>
+                <th scope="col">Opponent defects</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">Cooperate</th>
+                <td class="mutual">
+                  <strong>3 / 3</strong>
+                  <small>Mutual cooperation</small>
+                </td>
+                <td>
+                  <strong>0 / 5</strong>
+                  <small>You cooperate alone</small>
+                </td>
+              </tr>
+              <tr>
+                <th scope="row">Defect</th>
+                <td>
+                  <strong>5 / 0</strong>
+                  <small>You defect alone</small>
+                </td>
+                <td class="mutual-defect">
+                  <strong>1 / 1</strong>
+                  <small>Mutual defection</small>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="game-method">
+        <div>
+          <p class="mono eyebrow">INTERPRETATION / 02</p>
+          <h2>Why cooperation fails.</h2>
+        </div>
+
+        <div>
+          <p>
+            In a single round, defecting provides a greater payoff
+            regardless of what the other player chooses.
+            Yet if both defect, they each earn only one point,
+            rather than three points through mutual cooperation.
+          </p>
+
+          <p>
+            Repeated games introduce history and the possibility
+            of reciprocity. Try playing several rounds against
+            Tit for Tat, then compare the results with an
+            opponent that always defects.
+          </p>
+
+          <p class="game-caveat">
+            This simulation uses illustrative payoff values
+            and deterministic computer strategies.
+            It is not a prediction of how real people will behave.
+          </p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom mono">
+      <span>ECONLAB / EXPERIMENT 02</span>
+      <a href="index.html#experiments">RETURN TO EXPERIMENT INDEX ↗</a>
+    </div>
+  </footer>
+</body>
+</html>

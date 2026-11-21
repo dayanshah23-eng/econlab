@@ -1,0 +1,541 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183A2E">
+  <title>EconLab — The Economic Observatory</title>
+  <meta name="description" content="An interactive laboratory for exploring markets, incentives, and economic decisions.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="#top" aria-label="EconLab home">
+        econ<span>lab.</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary navigation">
+        <a href="#experiments">Experiments</a>
+        <a href="#market">Laboratory</a>
+        <a href="#methodology">Methodology</a>
+        <a href="#mission">Our Mission</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- OPENING -->
+
+    <section class="opening" aria-labelledby="mainTitle">
+      <div class="wrap opening-grid">
+        <div>
+          <div class="mono" style="color:#F0A17F">
+            The Economic Observatory / 001
+          </div>
+
+          <h1 id="mainTitle">
+            Observe.<br>
+            Question.<br>
+            <em>Experiment.</em>
+          </h1>
+
+          <p class="opening-description">
+            Economics is a study of decisions and their consequences.
+            Change the variables, test the assumptions, and investigate
+            what happens when the rules change.
+          </p>
+        </div>
+
+        <aside class="opening-aside">
+          <div class="mono">About the laboratory</div>
+          <p>
+            EconLab brings economic theory into an interactive
+            environment. Each experiment starts with a model
+            and makes its assumptions visible.
+          </p>
+          <div class="mono" style="color:#F0A17F">
+            Explore the index ↓
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- EXPERIMENT LIBRARY -->
+
+    <section class="library wrap" id="experiments"
+             aria-labelledby="libraryTitle">
+      <div class="library-heading">
+        <div>
+          <div class="section-number">INDEX / THE LABORATORY</div>
+          <h2 id="libraryTitle">Choose an experiment.</h2>
+        </div>
+
+        <p class="heading-aside">
+          Start with a question. Manipulate the model.
+          Examine what changes — and why.
+        </p>
+      </div>
+
+      <a class="experiment" href="#market">
+        <span class="experiment-number">01 /</span>
+
+        <div>
+          <div class="experiment-title">The Market</div>
+          <p class="experiment-description">
+            Supply, demand, equilibrium, taxation, and welfare.
+          </p>
+        </div>
+
+        <span class="experiment-status">Available</span>
+        <span class="experiment-arrow" aria-hidden="true">↗</span>
+      </a>
+
+     
+      <a class="experiment" href="game.html">
+        <span class="experiment-number">02 /</span>
+
+    <div>
+         <div class="experiment-title">The Strategy</div>
+         <p class="experiment-description">
+        Game theory, cooperation, and strategic incentives.
+         </p>
+  </div>
+
+  <span class="experiment-status">Available</span>
+  <span class="experiment-arrow" aria-hidden="true">↗</span>
+</a>
+
+
+      
+<a class="experiment" href="economy.html">
+  <span class="experiment-number">03 /</span>
+
+  <div>
+    <div class="experiment-title">The Economy</div>
+    <p class="experiment-description">
+      GDP, inflation, unemployment, and economic trends.
+    </p>
+  </div>
+
+  <span class="experiment-status">Available</span>
+  <span class="experiment-arrow" aria-hidden="true">↗</span>
+</a>
+    </section>
+
+    <!-- MARKET LAB -->
+
+    <section class="lab" id="market" aria-labelledby="marketTitle">
+      <div class="wrap">
+
+        <div class="lab-top">
+          <div>
+            <div class="mono eyebrow">EXPERIMENT 01 / ACTIVE</div>
+            <h2 id="marketTitle">The Market.</h2>
+          </div>
+
+          <p>
+            A competitive market responds to changes in demand,
+            production costs, and taxes. Adjust the parameters
+            to observe how prices, trading volume, and
+            economic welfare change.
+          </p>
+        </div>
+
+        <div class="workspace">
+
+          <!-- PARAMETER CONTROLS -->
+
+          <aside class="controls" aria-label="Simulation parameters">
+            <div class="controls-header">
+              <div class="mono eyebrow">INPUT / PARAMETERS</div>
+              <h3>Change the conditions.</h3>
+            </div>
+
+            <div class="control">
+              <div class="control-header">
+                <label for="demandSlider">Consumer demand</label>
+                <output id="demandValue" for="demandSlider">100</output>
+              </div>
+
+              <input id="demandSlider" type="range"
+                     min="60" max="160" step="5" value="100">
+
+              <p class="control-description">
+                Demand curve's price intercept.
+              </p>
+            </div>
+
+            <div class="control">
+              <div class="control-header">
+                <label for="costSlider">Production cost</label>
+                <output id="costValue" for="costSlider">20</output>
+              </div>
+
+              <input id="costSlider" type="range"
+                     min="0" max="60" step="5" value="20">
+
+              <p class="control-description">
+                Supply curve's price intercept.
+              </p>
+            </div>
+
+            <div class="control">
+              <div class="control-header">
+                <label for="taxSlider">Per-unit tax</label>
+                <output id="taxValue" for="taxSlider">0</output>
+              </div>
+
+              <input id="taxSlider" type="range"
+                     min="0" max="40" step="5" value="0">
+
+              <p class="control-description">
+                Tax collected per unit exchanged.
+              </p>
+            </div>
+
+            <button class="reset" id="resetButton" type="button">
+              Reset experiment ↺
+            </button>
+          </aside>
+
+          <!-- LIVE GRAPH -->
+
+          <div class="plot">
+            <div class="plot-top">
+              <div>
+                <div class="mono eyebrow">FIGURE 01 / LIVE MODEL</div>
+                <h3 class="plot-title">Supply and demand</h3>
+              </div>
+
+              <div class="legend" aria-label="Graph legend">
+                <span><i></i> Demand</span>
+                <span><i class="supply"></i> Supply</span>
+              </div>
+            </div>
+
+            <svg id="marketGraph"
+                 viewBox="0 0 760 440"
+                 role="img"
+                 aria-label="Supply and demand curves with equilibrium and tax wedge">
+
+              <defs>
+                <clipPath id="chartClip">
+                  <rect x="75" y="25" width="635" height="340"></rect>
+                </clipPath>
+              </defs>
+
+              <g id="chartGrid"></g>
+
+              <line x1="75" y1="365" x2="710" y2="365"
+                    stroke="#181817" stroke-width="1.5"/>
+              <line x1="75" y1="25" x2="75" y2="365"
+                    stroke="#181817" stroke-width="1.5"/>
+
+              <text x="390" y="423" text-anchor="middle">Quantity</text>
+              <text x="18" y="195" text-anchor="middle"
+                    transform="rotate(-90 18 195)">Price</text>
+
+              <g clip-path="url(#chartClip)">
+
+                <!-- Economic welfare shading -->
+
+                <polygon
+                 id="consumerArea"
+                 fill="#C85A32"
+                 fill-opacity="0.16"
+                stroke="none"
+                />
+
+                <polygon
+                id="producerArea"
+                fill="#183A2E"
+                fill-opacity="0.16"
+                stroke="none"
+                />
+
+                <polygon
+                id="deadweightArea"
+                fill="#D5A52A"
+                fill-opacity="0.55"
+                stroke="none"
+                />
+
+                <line id="demandLine"
+                      stroke="#C85A32" stroke-width="3.5"/>
+
+                <line id="supplyLine"
+                      stroke="#183A2E" stroke-width="3.5"/>
+
+                <line id="verticalGuide"
+                      stroke="#807D75" stroke-dasharray="5 5"/>
+
+                <line id="horizontalGuide"
+                      stroke="#807D75" stroke-dasharray="5 5"/>
+
+                <line id="taxWedge"
+                      stroke="#C85A32" stroke-width="5"/>
+
+                <circle id="buyerPoint" r="6.5"
+                        fill="#C85A32" stroke="white"
+                        stroke-width="2"/>
+
+                <circle id="sellerPoint" r="6.5"
+                        fill="#183A2E" stroke="white"
+                        stroke-width="2"/>
+              </g>
+
+              <text id="equilibriumLabel"></text>
+              <text id="taxGraphLabel"></text>
+            </svg>
+
+            <p class="plot-note">
+              Demand: P = a − 0.8Q.
+              Supply: P = c + 0.8Q.
+              The tax wedge separates buyer and seller prices.
+            </p>
+          </div>
+        </div>
+
+        <!-- MARKET OUTCOMES -->
+
+        <div class="outcomes-heading">
+          <h3>Market outcomes.</h3>
+          <span class="mono">OUTPUT / 06 VARIABLES</span>
+        </div>
+
+        <div class="results" aria-label="Calculated market results">
+
+          <div class="result">
+            <div class="result-label">Buyer price</div>
+            <div class="result-value" id="priceResult">$60.00</div>
+            <div class="result-description">Price consumers pay</div>
+          </div>
+
+          <div class="result">
+            <div class="result-label">Market quantity</div>
+            <div class="result-value" id="quantityResult">50.0</div>
+            <div class="result-description">Units traded</div>
+          </div>
+
+          <div class="result">
+            <div class="result-label">Consumer surplus</div>
+            <div class="result-value" id="consumerResult">$1,000</div>
+            <div class="result-description">Consumer gains from trade</div>
+          </div>
+
+          <div class="result">
+            <div class="result-label">Producer surplus</div>
+            <div class="result-value" id="producerResult">$1,000</div>
+            <div class="result-description">Producer gains from trade</div>
+          </div>
+
+          <div class="result">
+            <div class="result-label">Tax revenue</div>
+            <div class="result-value" id="taxRevenueResult">$0</div>
+            <div class="result-description">Government tax receipts</div>
+          </div>
+
+          <div class="result important">
+            <div class="result-label">Deadweight loss</div>
+            <div class="result-value" id="deadweightLossResult">$0</div>
+            <div class="result-description">Surplus lost from reduced trade</div>
+          </div>
+        </div>
+
+        <!-- EXPLANATION -->
+
+        <div class="interpretation">
+          <div>
+            <div class="mono eyebrow">INTERPRETATION / 01</div>
+            <h3>What changed?</h3>
+          </div>
+
+          <p id="analysisText" aria-live="polite">
+            Without a tax, this market reaches its competitive equilibrium.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- METHODOLOGY -->
+
+    <section class="method wrap" id="methodology"
+             aria-labelledby="methodTitle">
+      <div>
+        <div class="mono eyebrow">THE METHOD / 001</div>
+        <h2 id="methodTitle">Behind the model.</h2>
+
+        <p>
+          Every simulation depends on assumptions.
+          This experiment uses linear supply and demand,
+          a single homogeneous good, and a competitive market.
+          Its results illustrate economic theory rather
+          than forecast the behavior of a real economy.
+        </p>
+      </div>
+
+      <div class="equations">
+        <div class="equation">
+          <span>Demand</span>
+          <code>P = a − 0.8Q</code>
+        </div>
+
+        <div class="equation">
+          <span>Supply</span>
+          <code>P = c + 0.8Q</code>
+        </div>
+
+        <div class="equation">
+          <span>Tax-adjusted quantity</span>
+          <code>Q = max(0, (a − c − t) / 1.6)</code>
+        </div>
+
+        <div class="equation">
+          <span>Deadweight loss</span>
+          <code>DWL = 0.8(Q₀ − Q)²</code>
+        </div>
+      </div>
+    </section>
+
+<!-- MISSION AND CREATOR SECTION -->
+
+<section class="mission-section" id="mission">
+  <div class="wrap">
+
+    <div class="mission-layout">
+
+      <div class="mission-heading">
+        <p class="mono mission-eyebrow">
+          ABOUT ECONLAB / 001
+        </p>
+
+        <h2>
+          Understanding the economy,
+          <em>one experiment at a time.</em>
+        </h2>
+      </div>
+
+      <div class="mission-description">
+        <h3>Our Mission</h3>
+
+        <p>
+          EconLab started with a simple goal: to better
+          understand how the economy works through data
+          and experimentation.
+        </p>
+
+        <p>
+          I wanted to create a place where I could explore
+          economic ideas beyond what I learn in a classroom,
+          while making those same concepts easier for others
+          to understand.
+        </p>
+
+        <p>
+          By combining economics, data, and interactive
+          simulations, EconLab allows anyone to ask
+          questions, test different scenarios, and see
+          how economic decisions shape the world around us.
+        </p>
+      </div>
+
+    </div>
+
+   
+<!-- BEHIND ECONLAB -->
+
+<div class="creator-layout">
+
+  <div class="creator-heading">
+    <p class="mono mission-eyebrow">
+      BEHIND THE PROJECT / 002
+    </p>
+
+    <h2>The people behind <em>EconLab.</em></h2>
+
+    <p class="creator-intro">
+      EconLab is an independent project built out of
+      curiosity about economics, data, and technology.
+    </p>
+  </div>
+
+  <div class="creator-team">
+
+    <!-- FOUNDER -->
+
+    <div class="team-member">
+      <p class="mono team-role">
+        DEVELOPER
+      </p>
+
+      <h3>Dayan Shah</h3>
+
+      <p>
+        I'm a high school student interested in economics,
+        data, and how technology can help us better
+        understand the world.
+      </p>
+
+      <p>
+        I created EconLab to explore these interests through
+        programming and experimentation, while making
+        economic concepts easier for others to understand.
+      </p>
+    </div>
+
+    <!-- DESIGN CONTRIBUTOR -->
+
+    <div class="team-member">
+      <p class="mono team-role">
+        DESIGN CONTRIBUTOR
+      </p>
+
+      <h3>Qasim Ahmad</h3>
+
+      <p>
+        Shaped EconLab's visual design, contributing
+        to how the platform looks and how its ideas are
+        presented to users.
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+  </div>
+</section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-main">
+        <div class="wordmark">econ<span>lab.</span></div>
+        <p>
+          An independent project investigating economic systems
+          through computational experiments.
+        </p>
+      </div>
+
+      <div class="footer-bottom mono">
+        <span>ECONLAB / THE ECONOMIC OBSERVATORY</span>
+        <span>Built to question assumptions.</span>
+      </div>
+    </div>
+  </footer>
+  <script src="script.js" defer></script>
+</body>
+</html>

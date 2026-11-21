@@ -1,0 +1,236 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#183A2E">
+  <title>The Economy — EconLab</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="economy.css">
+  <script src="economy.js" defer></script>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="index.html">
+        econ<span>lab.</span>
+      </a>
+
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="index.html#experiments">Experiments</a>
+        <a href="game.html">The Strategy</a>
+        <a href="#explorer">The Economy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="economy-hero">
+      <div class="wrap economy-hero-layout">
+        <div>
+          <p class="mono economy-kicker">
+            EXPERIMENT 03 / ECONOMIC DATA
+          </p>
+
+          <h1>
+            Numbers tell<br>
+            <em>stories.</em>
+          </h1>
+        </div>
+
+        <p class="economy-hero-description">
+          Explore economic change through published data.
+          Investigate historical patterns, compare periods,
+          and consider what the numbers can — and cannot —
+          tell us.
+        </p>
+      </div>
+    </section>
+
+    <section class="economy-lab wrap" id="explorer"
+             aria-labelledby="explorerTitle">
+
+      <div class="economy-heading">
+        <div>
+          <p class="mono eyebrow">THE DATA EXPLORER / 001</p>
+          <h2 id="explorerTitle">Investigate an economy.</h2>
+        </div>
+
+        <p>
+          Select a country, indicator, and starting year.
+          EconLab retrieves observations from the World Bank.
+        </p>
+      </div>
+
+      <div class="economy-workspace">
+        <aside class="economy-controls"
+               aria-label="Data explorer settings">
+
+          <div class="mono eyebrow">INPUT / DATA SELECTION</div>
+
+          <div class="economy-field">
+            <label for="countrySelect">Country</label>
+            <select id="countrySelect">
+              <option value="USA">United States</option>
+              <option value="CAN">Canada</option>
+              <option value="GBR">United Kingdom</option>
+              <option value="IND">India</option>
+              <option value="BRA">Brazil</option>
+            </select>
+          </div>
+
+          <div class="economy-field">
+            <label for="indicatorSelect">
+              Economic indicator
+            </label>
+            <select id="indicatorSelect">
+              <option value="NY.GDP.PCAP.CD">
+                GDP per capita
+              </option>
+              <option value="FP.CPI.TOTL.ZG">
+                Inflation
+              </option>
+              <option value="SL.UEM.TOTL.ZS">
+                Unemployment
+              </option>
+            </select>
+          </div>
+
+          <div class="economy-field">
+            <label for="startYearSelect">
+              Start year
+            </label>
+            <select id="startYearSelect">
+              <option value="2000">2000</option>
+              <option value="2005">2005</option>
+              <option value="2010">2010</option>
+              <option value="2015">2015</option>
+              <option value="2020">2020</option>
+            </select>
+          </div>
+
+          <button id="loadDataButton"
+                  class="economy-button"
+                  type="button">
+            Update visualization ↗
+          </button>
+
+          <p class="economy-source-note">
+            Source: World Bank Open Data.
+            Annual observations; availability varies
+            by indicator and country.
+          </p>
+        </aside>
+
+        <section class="economy-visual"
+                 aria-labelledby="chartTitle">
+
+          <div class="economy-chart-top">
+            <div>
+              <p class="mono eyebrow">FIGURE 04 / OBSERVED DATA</p>
+              <h3 id="chartTitle">GDP per capita</h3>
+              <p id="chartSubtitle">
+                United States · Annual observations
+              </p>
+            </div>
+            <span class="mono" id="chartUnit">CURRENT US$</span>
+          </div>
+
+          <div id="dataStatus" class="data-status"
+               role="status" aria-live="polite">
+            Loading published data...
+          </div>
+
+          <svg id="economyChart"
+               viewBox="0 0 760 400"
+               role="img"
+               aria-label="Historical economic indicator line chart">
+          </svg>
+
+          <div class="economy-chart-bottom">
+            <span class="mono">YEAR →</span>
+            <span class="mono" id="observationCount">
+              OBSERVATIONS / —
+            </span>
+          </div>
+        </section>
+      </div>
+
+      <section class="economy-results"
+               aria-labelledby="resultsTitle">
+        <div class="economy-results-heading">
+          <h2 id="resultsTitle">Reading the data.</h2>
+          <span class="mono">SUMMARY / SELECTED PERIOD</span>
+        </div>
+
+        <div class="economy-result-grid">
+          <div class="economy-result">
+            <p class="mono">FIRST AVAILABLE</p>
+            <div class="economy-result-value"
+                 id="firstValue">—</div>
+            <p id="firstYear">—</p>
+          </div>
+
+          <div class="economy-result">
+            <p class="mono">LATEST AVAILABLE</p>
+            <div class="economy-result-value"
+                 id="latestValue">—</div>
+            <p id="latestYear">—</p>
+          </div>
+
+          <div class="economy-result">
+            <p class="mono">CHANGE OVER PERIOD</p>
+            <div class="economy-result-value"
+                 id="changeValue">—</div>
+            <p id="changeDescription">—</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="economy-interpretation"
+               aria-labelledby="interpretTitle">
+        <div>
+          <p class="mono eyebrow">INTERPRETATION / 03</p>
+          <h2 id="interpretTitle">What can we conclude?</h2>
+        </div>
+
+        <div>
+          <p id="economyExplanation">
+            Choose an indicator to explore its meaning
+            and limitations.
+          </p>
+
+          <p class="economy-caution">
+            Historical correlations do not establish causation.
+            Methodologies, revisions, and missing observations
+            may affect comparisons.
+          </p>
+
+          <a id="sourceLink"
+             href="https://data.worldbank.org/"
+             target="_blank"
+             rel="noopener noreferrer">
+            View the original data source ↗
+          </a>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-bottom mono">
+      <span>ECONLAB / EXPERIMENT 03</span>
+      <a href="index.html#experiments">
+        RETURN TO EXPERIMENT INDEX ↗
+      </a>
+    </div>
+  </footer>
+</body>
+</html>
